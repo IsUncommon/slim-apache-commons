@@ -20,6 +20,7 @@ package is.uncommon.slimcommons;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigInteger;
 import java.nio.charset.Charset;
 
@@ -374,6 +375,33 @@ public class FileUtils {
             return false;
         } else {
             return true;
+        }
+    }
+
+    /**
+     * <p>
+     * Reads the contents of a file into a String.
+     * </p>
+     * <p>
+     * There is no readFileToString method without encoding parameter because
+     * the default encoding can differ between platforms and therefore results
+     * in inconsistent results.
+     * </p>
+     *
+     * @param file the file to read.
+     * @param encoding the encoding to use
+     * @return The file contents or null if read failed.
+     * @throws IOException in case of an I/O error
+     * @throws UnsupportedEncodingException if the encoding is not supported
+     *   by the VM
+     */
+    public static String readFileToString(
+            File file, String encoding) throws IOException {
+        InputStream in = new java.io.FileInputStream(file);
+        try {
+            return IOUtils.toString(in, encoding);
+        } finally {
+            IOUtils.closeQuietly(in);
         }
     }
 

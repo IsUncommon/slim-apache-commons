@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.io.StringWriter;
 import java.io.Writer;
 
 public class IOUtils {
@@ -50,6 +51,24 @@ public class IOUtils {
             count += n;
         }
         return count;
+    }
+
+    /**
+     * Get the contents of an <code>InputStream</code> as a String.
+     * @param input the <code>InputStream</code> to read from
+     * @param encoding The name of a supported character encoding. See the
+     *   <a href="http://www.iana.org/assignments/character-sets">IANA
+     *   Charset Registry</a> for a list of valid encoding types.
+     * @return the requested <code>String</code>
+     * @throws IOException In case of an I/O problem
+     */
+    public static String toString( InputStream input,
+            String encoding )
+            throws IOException
+    {
+        StringWriter sw = new StringWriter();
+        CopyUtils.copy( input, sw, encoding );
+        return sw.toString();
     }
 
 }
