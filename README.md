@@ -1,5 +1,5 @@
-# slim-apache-commons
-A slimmed down version of apache commons
+# ucmn-commons
+A slimmed down version of apache commons.
 
 Published via jitpack.io, gradle compile target
 
