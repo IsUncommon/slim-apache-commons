@@ -1,4 +1,4 @@
-package is.uncommon.slimcommons;
+package ucmn.commons;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
