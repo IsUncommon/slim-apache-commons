@@ -1,8 +1,4 @@
 # ucmn-commons
-A slimmed down version of apache commons.
+Common utilities pulled down from apache commons & Facebook network utilities.
 
-Published via jitpack.io, gradle compile target
-
-```
-compile 'com.github.IsUncommon:slim-apache-commons:1.0.0'
-```
+Published via jitpack.io
