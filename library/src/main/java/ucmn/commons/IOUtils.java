@@ -1,4 +1,4 @@
-package is.uncommon.slimcommons;
+package ucmn.commons;
 
 import java.io.Closeable;
 import java.io.IOException;

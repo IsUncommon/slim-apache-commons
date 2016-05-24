@@ -1,6 +1,6 @@
-package is.uncommon.slimcommons;
+package ucmn.commons;
 
-import static is.uncommon.slimcommons.IOUtils.EOF;
+import static ucmn.commons.IOUtils.EOF;
 
 import java.io.IOException;
 import java.io.InputStream;
