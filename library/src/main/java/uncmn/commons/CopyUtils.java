@@ -13,16 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ucmn.commons;
+package uncmn.commons;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.io.Reader;
-import java.io.StringReader;
 import java.io.Writer;
 
 /**
@@ -32,7 +28,7 @@ import java.io.Writer;
  * <code>byte[]</code>) and destinations (<code>OutputStream</code>, <code>Writer</code>,
  * <code>String</code> and <code>byte[]</code>).
  * </p>
- *
+ * <p>
  * <p>Unless otherwise noted, these <code>copy</code> methods do <em>not</em> flush or close the
  * streams. Often doing so would require making non-portable assumptions about the streams' origin
  * and further use. This means that both streams' <code>close()</code> methods must be called after
@@ -41,25 +37,25 @@ import java.io.Writer;
  * mechanism. For a good overview of the distinction between "memory management" and "resource
  * management", see <a href="http://www.unixreview.com/articles/1998/9804/9804ja/ja.htm">this
  * UnixReview article</a>.</p>
- *
- * <p>For byte-to-char methods, a <code>copy</code> variant allows the encoding 
- * to be selected (otherwise the platform default is used). We would like to 
+ * <p>
+ * <p>For byte-to-char methods, a <code>copy</code> variant allows the encoding
+ * to be selected (otherwise the platform default is used). We would like to
  * encourage you to always specify the encoding because relying on the platform
  * default can lead to unexpected results.</p>
- *
+ * <p>
  * <p>We don't provide special variants for the <code>copy</code> methods that
  * let you specify the buffer size because in modern VMs the impact on speed
  * seems to be minimal. We're using a default buffer size of 4 KB.</p>
- *
+ * <p>
  * <p>The <code>copy</code> methods use an internal buffer when copying. It is therefore advisable
  * <em>not</em> to deliberately wrap the stream arguments to the <code>copy</code> methods in
  * <code>Buffered*</code> streams. For example, don't do the
  * following:</p>
- *
+ * <p>
  * <code>copy( new BufferedInputStream( in ), new BufferedOutputStream( out ) );</code>
- *
+ * <p>
  * <p>The rationale is as follows:</p>
- *
+ * <p>
  * <p>Imagine that an InputStream's read() is a very expensive operation, which would usually suggest
  * wrapping in a BufferedInputStream. The BufferedInputStream works by issuing infrequent
  * {@link java.io.InputStream#read(byte[] b, int off, int len)} requests on the underlying InputStream, to
@@ -69,7 +65,7 @@ import java.io.Writer;
  * populated by {@link InputStream#read(byte[] b, int off, int len)} requests. Having two buffers
  * (or three if the destination stream is also buffered) is pointless, and the unnecessary buffer
  * management hurts performance slightly (about 3%, according to some simple experiments).</p>
- *
+ * <p>
  * <p>Behold, intrepid explorers; a map of this class:</p>
  * <pre>
  *       Method      Input               Output          Dependency
@@ -87,12 +83,12 @@ import java.io.Writer;
  * 7     copy        byte[]              Writer          3
  * 8     copy        byte[]              OutputStream    (trivial)
  * </pre>
- *
+ * <p>
  * <p>Note that only the first two methods shuffle bytes; the rest use these
  * two, or (if possible) copy using native Java copy methods. As there are
  * method variants to specify the encoding, each row may
  * correspond to up to 2 methods.</p>
- *
+ * <p>
  * <p>Origin of code: Apache Avalon (Excalibur)</p>
  *
  * @author Peter Donald
@@ -110,7 +106,8 @@ public class CopyUtils {
     /**
      * Instances should NOT be constructed in standard programming.
      */
-    public CopyUtils() {}
+    public CopyUtils() {
+    }
 
     // ----------------------------------------------------------------
     // byte[] -> Writer
@@ -118,7 +115,8 @@ public class CopyUtils {
 
     /**
      * Copy chars from a <code>Reader</code> to a <code>Writer</code>.
-     * @param input the <code>Reader</code> to read from
+     *
+     * @param input  the <code>Reader</code> to read from
      * @param output the <code>Writer</code> to write to
      * @return the number of characters copied
      * @throws IOException In case of an I/O problem
@@ -145,7 +143,8 @@ public class CopyUtils {
      * Copy and convert bytes from an <code>InputStream</code> to chars on a
      * <code>Writer</code>.
      * The platform's default encoding is used for the byte-to-char conversion.
-     * @param input the <code>InputStream</code> to read from
+     *
+     * @param input  the <code>InputStream</code> to read from
      * @param output the <code>Writer</code> to write to
      * @throws IOException In case of an I/O problem
      */
@@ -160,11 +159,12 @@ public class CopyUtils {
     /**
      * Copy and convert bytes from an <code>InputStream</code> to chars on a
      * <code>Writer</code>, using the specified encoding.
-     * @param input the <code>InputStream</code> to read from
-     * @param output the <code>Writer</code> to write to
+     *
+     * @param input    the <code>InputStream</code> to read from
+     * @param output   the <code>Writer</code> to write to
      * @param encoding The name of a supported character encoding. See the
-     * <a href="http://www.iana.org/assignments/character-sets">IANA
-     * Charset Registry</a> for a list of valid encoding types.
+     *                 <a href="http://www.iana.org/assignments/character-sets">IANA
+     *                 Charset Registry</a> for a list of valid encoding types.
      * @throws IOException In case of an I/O problem
      */
     public static void copy(

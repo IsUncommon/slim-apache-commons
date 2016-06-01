@@ -1,4 +1,4 @@
-package ucmn.commons;
+package uncmn.commons;
 
 import java.io.Closeable;
 import java.io.IOException;

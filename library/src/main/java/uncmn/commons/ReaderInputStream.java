@@ -1,6 +1,4 @@
-package ucmn.commons;
-
-import static ucmn.commons.IOUtils.EOF;
+package uncmn.commons;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +9,8 @@ import java.nio.charset.Charset;
 import java.nio.charset.CharsetEncoder;
 import java.nio.charset.CoderResult;
 import java.nio.charset.CodingErrorAction;
+
+import static uncmn.commons.IOUtils.EOF;
 
 /**
  * {@link InputStream} implementation that reads a character stream from a {@link Reader}
@@ -53,7 +53,6 @@ import java.nio.charset.CodingErrorAction;
  * will always return 0. Also, this class doesn't support {@link InputStream#mark(int)}.
  * <p/>
  * Instances of {@link ReaderInputStream} are not thread safe.
- *
  */
 public class ReaderInputStream extends InputStream {
     private static final int DEFAULT_BUFFER_SIZE = 1024;

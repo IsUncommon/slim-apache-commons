@@ -1,4 +1,4 @@
-package ucmn.commons;
+package uncmn.commons;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
